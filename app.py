@@ -6,6 +6,8 @@ import io
 import os
 import base64
 
+
+
 from model import load_model, preprocess, get_segmented_output
 
 st.set_page_config(page_title="VisionExtract AI", layout="wide")
@@ -21,9 +23,10 @@ def img_to_bytes(img):
 # -------------------------
 # Load Model
 # -------------------------
-@st.cache_resource
+@st.cache_resource(ttl=3600)
 def load_segmentation_model():
     return load_model("final_segmentation_model.pth")
+
 
 model = load_segmentation_model()
 
